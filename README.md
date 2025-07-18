@@ -30,6 +30,11 @@ L'applicazione è divisa in due aree principali con funzionalità distinte basat
 
 Ecco alcuni screenshot che mostrano le interfacce principali dell'applicazione.
 
+![voliDisponibili](https://github.com/user-attachments/assets/4a3e2e32-7380-4c0f-a4b1-fc50ddf9be8e)
+
+
+![le miei prenotazioni](https://github.com/user-attachments/assets/187a04e5-e274-4f91-b672-b45fde1661c3)
+
 
 
 ## 🚀 Tecnologie Utilizzate
