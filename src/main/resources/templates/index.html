@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+      
+<body>
+ <main layout:fragment="content">
+    <div th:fragment="content">
+        <h1>Voli Disponibili</h1>
+
+        <form th:action="@{/voli}" method="get" class="filter-form">
+            <input type="text" name="destinazione" placeholder="Filtra per destinazione..." th:value="${param.destinazione}">
+             <input type="date" name="data" th:value="${param.data}">
+            <button type="submit" class="btn btn-primary">Cerca</button>
+        </form>
+
+        <div th:if="${voli.isEmpty()}">
+            <p>Nessun volo trovato.</p>
+        </div>
+
+        <table th:if="${!voli.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Numero Volo</th>
+                    <th>Partenza</th>
+                    <th>Arrivo</th>
+                    <th>Data e Ora</th>
+                    <th>Prezzo</th>
+                    <th>Azione</th>
+                </tr>
+            </thead>
+            <tbody>
+               <tr th:each="volo : ${voli}">
+    <td data-label="Numero Volo" th:text="${volo.numero}"></td>
+    <td data-label="Partenza" th:text="${volo.aeroportoPartenza}"></td>
+    <td data-label="Arrivo" th:text="${volo.aeroportoArrivo}"></td>
+    <td data-label="Data e Ora" th:text="${#temporals.format(volo.dataOra, 'dd-MM-yyyy HH:mm')}"></td>
+    <td data-label="Prezzo" th:text="${#numbers.formatCurrency(volo.prezzo)}"></td>
+    <td data-label="Azione">
+                        <!-- <a th:href="@{/book/{id}(id=${volo.id})}" class="btn" sec:authorize="hasRole('USER')">Prenota</a> -->
+                    
+                    <a th:href="@{/prenotazioni/new/{voloId}(voloId=${volo.id})}" class="btn" sec:authorize="hasRole('USER')">Prenota</a>
+                         <span sec:authorize="!hasRole('USER')">Login per prenotare</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+    </div>
+    </main>
+    <script>
+// Semplice esempio di AJAX per il filtro
+document.getElementById('filterForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const destinazione = document.getElementById('destinazione').value;
+    // Qui faresti una chiamata fetch a un endpoint API dedicato
+    // e aggiorneresti la tabella dinamicamente.
+    // Per semplicità, qui ricarichiamo la pagina con il parametro.
+    window.location.href = '/voli?destinazione=' + destinazione;
+});
+</script>
+</body>
+</html>

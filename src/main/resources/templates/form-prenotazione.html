@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+      
+<body>
+    <main layout:fragment="content">
+        <h1>Conferma Prenotazione</h1>
+        <h2>Volo: <span th:text="${volo.numero}"></span> (<span th:text="${volo.aeroportoPartenza}"></span> - <span th:text="${volo.aeroportoArrivo}"></span>)</h2>
+        <p>Posti disponibili: <span th:text="${volo.postiDisponibili}"></span></p>
+
+        <form th:action="@{/prenotazioni/create}" method="post">
+            <input type="hidden" name="voloId" th:value="${volo.id}" />
+            <div>
+                <label for="nPosti">Numero di posti da prenotare:</label>
+                <input type="number" id="nPosti" name="nPosti" min="1" th:max="${volo.postiDisponibili}" value="1" required>
+            </div>
+            <button type="submit" class="btn">Conferma Prenotazione</button>
+        </form>
+    </main>
+</body>
+</html>

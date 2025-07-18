@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+    <!-- 2. Il contenuto va dentro un blocco con layout:fragment="content" -->
+    <main layout:fragment="content">
+        <h1>Login</h1>
+        
+        <div th:if="${param.error}" class="alert alert-danger">
+            Email o password non validi.
+        </div>
+        <div th:if="${param.logout}" class="alert alert-success">
+            Logout effettuato con successo.
+        </div>
+        <div th:if="${param.success}" class="alert alert-success">
+            Registrazione completata! Effettua il login.
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label for="username">Email:</label>
+                <input type="email" id="username" name="username" required autofocus>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="btn btn-primary">Accedi</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

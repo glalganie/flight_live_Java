@@ -1,0 +1,299 @@
+/* Stili Generali */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    background-color: #f4f7f6;
+    color: #333;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 20px auto;
+    padding: 0 20px;
+}
+
+h1, h2 {
+    color: #0056b3;
+}
+
+/* Navigazione */
+nav {
+    background: #0056b3;
+    color: #fff;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+nav .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s;
+}
+
+nav a:hover {
+    background-color: #004494;
+    border-radius: 5px;
+}
+
+nav .logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+/* Tabelle */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #e9ecef;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Form */
+form {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+}
+
+form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="password"],
+form input[type="number"],
+form input[type="datetime-local"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Important */
+}
+
+/*.btn {
+    display: inline-block;
+    background: #28a745;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}*/
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #28a745; /* Verde di default */
+    border: 1px solid transparent;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0.25rem;
+    text-decoration: none; /* Rimuove la sottolineatura dai link */
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+
+/*
+.btn-primary {
+    background: #007bff;
+}
+
+.btn-danger {
+    background: #dc3545;
+}*/
+
+.btn:hover {
+    color: #fff;
+}
+
+/* Colori specifici */
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-primary:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    
+}
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+
+
+/* Alert */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+
+/* Stili per il Logo nella Navbar */
+nav .logo {
+    display: flex;
+    align-items: center; /* Allinea verticalmente l'immagine e il testo */
+    font-weight: bold;
+    font-size: 1.5rem;
+    gap: 10px; /* Aggiunge un po' di spazio tra l'immagine e il testo */
+}
+
+nav .logo img {
+    height: 40px; /* Imposta l'altezza del logo. La larghezza si adatterà */
+    width: auto;
+    border-radius: 50%; /* Rende l'immagine circolare, come nell'originale */
+}
+
+
+/* ========================================= */
+/*               Media Queries               */
+/* ========================================= */
+
+/* Per schermi più piccoli di 768px (tablet e telefoni) */
+@media (max-width: 768px) {
+
+    /* --- Navigazione --- */
+    nav .container {
+        flex-direction: column; /* Impila il logo sopra i link */
+        gap: 1rem;
+    }
+
+    nav ul {
+        flex-direction: column; /* Impila i link della navbar in verticale */
+        width: 100%;
+        text-align: center;
+    }
+    
+    nav ul li {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    nav ul li a, nav ul li form button {
+        display: block; /* Fa sì che i link occupino tutta la larghezza */
+        width: 100%;
+        box-sizing: border-box; /* Include padding e border nel calcolo della larghezza */
+    }
+    
+    /* --- Tabelle --- */
+    /* Trasforma la tabella in un layout a "schede" per una migliore leggibilità */
+    table thead {
+        display: none; /* Nasconde le intestazioni della tabella */
+    }
+
+    table, table tbody, table tr, table td {
+        display: block; /* Ogni elemento diventa un blocco a sé stante */
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    table tr {
+        margin-bottom: 1rem;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    table td {
+        text-align: right; /* Allinea il contenuto a destra */
+        position: relative;
+        padding-left: 50%; /* Lascia spazio a sinistra per l'etichetta */
+        border: none;
+        border-bottom: 1px solid #eee;
+    }
+    
+    table td:last-child {
+        border-bottom: 0;
+    }
+
+    /* Aggiunge l'etichetta della colonna prima del dato, usando i "data attributes" */
+    table td::before {
+        content: attr(data-label); /* Legge il contenuto dall'attributo data-label */
+        position: absolute;
+        left: 10px;
+        width: calc(50% - 20px);
+        text-align: left;
+        font-weight: bold;
+    }
+    
+    /* Seleziona la cella che contiene il nostro pulsante di azione.
+       Dobbiamo dare a quella cella una classe, ad es. "action-cell" */
+    td.action-cell {
+        display: block;  /* Mantiene il comportamento a blocco */
+        padding-left: 0; /* Rimuove il padding a sinistra */
+        text-align: center; /* Centra il pulsante */
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background-color: #f8f9fa; /* Un leggero sfondo per separarla */
+    }
+    
+    /* Rimuove l'etichetta "data-label" dalla cella delle azioni */
+    td.action-cell::before {
+        content: none;
+    }
+    
+}

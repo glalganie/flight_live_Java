@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+ <main layout:fragment="content">
+<div th:fragment="content">
+    <h1>Report Settimanale: Voli più Prenotati</h1>
+    
+    <div th:if="${reportData.isEmpty()}">
+        <p>Nessuna prenotazione registrata nell'ultima settimana.</p>
+    </div>
+
+    <table th:if="${!reportData.isEmpty()}">
+        <thead>
+            <tr>
+                <th>Numero Volo</th>
+                <th>Tratta</th>
+                <th>Totale Posti Prenotati</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- reportData è una List<Object[]>, dove row[0] è l'oggetto Volo e row[1] è il conteggio -->
+            <tr th:each="row : ${reportData}">
+                <td th:text="${row[0].numero}"></td>
+                <td th:text="|${row[0].aeroportoPartenza} - ${row[0].aeroportoArrivo}|"></td>
+                <td th:text="${row[1]}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</main>
+</body>
+</html>

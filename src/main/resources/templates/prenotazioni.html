@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+    <main layout:fragment="content">
+        <h1>Le Mie Prenotazioni</h1>
+
+        <!-- Messaggi di successo/errore dopo la cancellazione -->
+     <!--     <div th:if="${messaggioCancellazioneSuccesso}" class="alert alert-success" th:text="${messaggioCancellazioneSuccesso}"></div>
+        <div th:if="${messaggioCancellazioneErrore}" class="alert alert-danger" th:text="${messaggioCancellazioneErrore}"></div>
+-->
+
+   <div th:if="${messaggioSuccesso}" class="alert alert-success" th:text="${messaggioSuccesso}"></div>
+        <div th:if="${messaggioCancellazioneSuccesso}" class="alert alert-success" th:text="${messaggioCancellazioneSuccesso}"></div>
+        <div th:if="${messaggioErrore}" class="alert alert-danger" th:text="${messaggioErrore}"></div>
+        <div th:if="${messaggioCancellazioneErrore}" class="alert alert-danger" th:text="${messaggioCancellazioneErrore}"></div>
+
+
+        <div th:if="${prenotazioni.isEmpty()}">
+            <p>Non hai ancora effettuato nessuna prenotazione.</p>
+        </div>
+<div class="table-responsive-wrapper">
+        <table th:if="${!prenotazioni.isEmpty()}">
+            <thead>
+                <tr>
+                    <th>Data Prenotazione</th>
+                    <th>Numero Volo</th>
+                    <th>Tratta</th>
+                    <th>Data Volo</th>
+                    <th>N. Posti</th>
+                    <th>Azione</th> 
+                    <th>PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+     <tr th:each="p : ${prenotazioni}">
+    <td data-label="Data Prenotazione" th:text="${#temporals.format(p.dataPrenotazione, 'dd-MM-yyyy')}"></td>
+    <td data-label="Numero Volo" th:text="${p.volo.numero}"></td>
+    <td data-label="Tratta" th:text="|${p.volo.aeroportoPartenza} - ${p.volo.aeroportoArrivo}|"></td>
+    <td data-label="Data Volo" th:text="${#temporals.format(p.volo.dataOra, 'dd-MM-yyyy HH:mm')}"></td>
+    <td data-label="N. Posti" th:text="${p.nPosti}"></td>
+    <td data-label="Azione"  class="action-cell">
+    
+ <a th:href="@{/prenotazioni/delete/{id}(id=${p.id})}" class="btn btn-danger delete-link">Cancella</a>
+                    <td data-label="PDF">
+    <a th:href="@{/prenotazioni/pdf/{id}(id=${p.id})}" class="btn">Scarica PDF</a>
+</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+        </div>
+    </main>
+</body>
+</html>

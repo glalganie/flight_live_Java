@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+ <main layout:fragment="content">
+<div th:fragment="content">
+    <h1 th:text="${volo.id == null} ? 'Nuovo Volo' : 'Modifica Volo'"></h1>
+
+    <form th:action="@{/admin/voli/save}" th:object="${volo}" method="post">
+        <!-- Campo nascosto per l'ID, fondamentale per la modifica -->
+        <input type="hidden" th:field="*{id}" />
+
+        <div>
+            <label for="numero">Numero Volo:</label>
+            <input type="text" id="numero" th:field="*{numero}" required>
+        </div>
+        <div>
+            <label for="aeroportoPartenza">Aeroporto di Partenza:</label>
+            <input type="text" id="aeroportoPartenza" th:field="*{aeroportoPartenza}" required>
+        </div>
+        <div>
+            <label for="aeroportoArrivo">Aeroporto di Arrivo:</label>
+            <input type="text" id="aeroportoArrivo" th:field="*{aeroportoArrivo}" required>
+        </div>
+        <div>
+            <label for="dataOra">Data e Ora:</label>
+            <input type="datetime-local" id="dataOra" th:field="*{dataOra}" required>
+        </div>
+        <div>
+            <label for="postiDisponibili">Posti Disponibili:</label>
+            <input type="number" id="postiDisponibili" th:field="*{postiDisponibili}" required>
+        </div>
+        <div>
+            <label for="prezzo">Prezzo:</label>
+            <input type="number" step="0.01" id="prezzo" th:field="*{prezzo}" required>
+        </div>
+        <div>
+            <button type="submit" class="btn">Salva Volo</button>
+        </div>
+    </form>
+</div>
+</main>
+</body>
+</html>

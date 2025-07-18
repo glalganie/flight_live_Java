@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Prenotazione Voli</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav>
+        <div class="container">
+   <a th:href="@{/}" class="logo">
+    <img th:src="@{/images/logo.png}" alt="FlightL Logo">
+    <span>FlightLive</span>
+</a>
+            <ul>
+                <li><a th:href="@{/voli}">Voli</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/login}">Login</a></li>
+                <li sec:authorize="!isAuthenticated()"><a th:href="@{/register}">Registrati</a></li>
+                <li sec:authorize="hasRole('USER')"><a th:href="@{/prenotazioni}">Le mie Prenotazioni</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin/voli}">Gestione Voli</a></li>
+                <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin/report}">Report</a></li>
+             <li sec:authorize="hasRole('ADMIN')"><a th:href="@{/admin/utenti}">Gestione Utenti</a></li>
+              <!--  
+                <li sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post" style="display:inline; padding:0; margin:0; box-shadow:none;">
+                        <button type="submit" style="background:none; border:none; color:rgb(192, 192, 192); padding:0.5rem 1rem; cursor:pointer; font-size: 1rem; font-family: inherit;">Logout</button>
+                    </form>
+                </li>--> 
+                
+                <li sec:authorize="isAuthenticated()">
+    <form th:action="@{/logout}" method="post" id="logoutForm" style="display: none;"></form>
+    <a href="#" onclick="document.getElementById('logoutForm').submit(); return false;">Logout</a>
+</li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- La sezione principale che verrà sostituita -->
+    <main class="container" layout:fragment="content">
+          <div th:replace="${content}"></div>
+    </main>
+
+    <script th:src="@{/js/app.js}"></script>
+</body>
+</html>

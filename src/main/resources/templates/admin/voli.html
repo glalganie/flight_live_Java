@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<body>
+ <main layout:fragment="content">
+    <div th:fragment="content">
+        <h1>Gestione Voli</h1>
+        <a th:href="@{/admin/voli/new}" class="btn">Aggiungi Nuovo Volo</a>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Partenza</th>
+                    <th>Arrivo</th>
+                    <th>Data/Ora</th>
+                    <th>Posti Disp.</th>
+                    <th>Prezzo</th>
+                    <th>Azioni</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="volo : ${voli}">
+                    <td data-label="Numero volo"  th:text="${volo.numero}"></td>
+                    <td data-label="Tratta"  th:text="${volo.aeroportoPartenza}"></td>
+                    <td data-label="Volo arrivo"  th:text="${volo.aeroportoArrivo}"></td>
+                    <td data-label="Data Volo"    th:text="${#temporals.format(volo.dataOra, 'dd-MM-yyyy HH:mm')}"></td>
+                    <td data-label="N. posti"   th:text="${volo.postiDisponibili}"></td>
+                    <td data-label="Volo prezzo"   th:text="${#numbers.formatCurrency(volo.prezzo)}"></td>
+                    <td>
+                        <a th:href="@{/admin/voli/edit/{id}(id=${volo.id})}" class="btn btn-primary">Modifica</a>
+                        <a th:href="@{/admin/voli/delete/{id}(id=${volo.id})}" class="btn btn-danger delete-link">Elimina</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    </main>
+</body>
+</html>
