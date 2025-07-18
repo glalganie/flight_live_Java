@@ -47,7 +47,7 @@ public class PrenotazioneController {
     
        
     
-    @PostMapping("/prenotazioni/delete/{id}")
+    @GetMapping("/prenotazioni/delete/{id}")
     public String cancellaPrenotazione(@PathVariable Long id, RedirectAttributes redirectAttributes) {
         try {
             prenotazioneService.cancellaPrenotazione(id);
